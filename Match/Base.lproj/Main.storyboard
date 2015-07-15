@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="ufC-wZ-h7g">
+            <objects>
+                <viewController id="vXZ-lx-hvc" customClass="ViewController" customModule="Match" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
+                        <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YI3-Vo-xLk">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="alw-Q8-tTs" userLabel="ContentView">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <variation key="heightClass=compact" ambiguous="YES" misplaced="YES">
+                                            <rect key="frame" x="0.0" y="-53" width="0.0" height="67"/>
+                                        </variation>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="alw-Q8-tTs" firstAttribute="leading" secondItem="YI3-Vo-xLk" secondAttribute="leading" id="UCc-kQ-9ha"/>
+                                    <constraint firstAttribute="width" constant="510" id="Xo9-li-TBk"/>
+                                    <constraint firstAttribute="trailing" secondItem="alw-Q8-tTs" secondAttribute="trailing" id="hmL-8P-12R"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="subviews">
+                                        <exclude reference="alw-Q8-tTs"/>
+                                    </mask>
+                                    <mask key="constraints">
+                                        <exclude reference="Xo9-li-TBk"/>
+                                        <exclude reference="UCc-kQ-9ha"/>
+                                        <exclude reference="hmL-8P-12R"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=compact" ambiguous="YES">
+                                    <rect key="frame" x="45" y="0.0" width="510" height="400"/>
+                                    <mask key="subviews">
+                                        <include reference="alw-Q8-tTs"/>
+                                    </mask>
+                                    <mask key="constraints">
+                                        <include reference="Xo9-li-TBk"/>
+                                        <include reference="UCc-kQ-9ha"/>
+                                        <include reference="hmL-8P-12R"/>
+                                    </mask>
+                                </variation>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="YI3-Vo-xLk" secondAttribute="bottom" id="lpt-Kc-lRS"/>
+                            <constraint firstItem="YI3-Vo-xLk" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" id="tJ8-ff-EAs"/>
+                            <constraint firstAttribute="centerX" secondItem="YI3-Vo-xLk" secondAttribute="centerX" id="z17-ii-XIL"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="YI3-Vo-xLk"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="lpt-Kc-lRS"/>
+                                <exclude reference="tJ8-ff-EAs"/>
+                                <exclude reference="z17-ii-XIL"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=compact">
+                            <mask key="subviews">
+                                <include reference="YI3-Vo-xLk"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="lpt-Kc-lRS"/>
+                                <include reference="tJ8-ff-EAs"/>
+                                <include reference="z17-ii-XIL"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <connections>
+                        <outlet property="cardScrollView" destination="YI3-Vo-xLk" id="jNq-9e-EDh"/>
+                        <outlet property="contentView" destination="alw-Q8-tTs" id="K45-nq-vuK"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
+    </scenes>
+</document>
