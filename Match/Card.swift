@@ -10,18 +10,34 @@ import UIKit
 
 class Card: UIView {
     
-    var CardImageView:UIImageView = UIImageView()
+    var cardImageView:UIImageView = UIImageView()
     var cardValue:Int = 0
     var cardNames:[String] = ["ace", "card2", "card3", "card4", "card5", "card6", "card7", "card8", "card9", "card10", "jack", "queen", "king"]
     
     override init() {
         super.init()
         
-        self.backgroundColor = UIColor.redColor()
+        // Set default img for img view
+        self.cardImageView.image = UIImage(named: "back")
         
-        // To Do: set default img for img view
-        // To Do: add img view to view
-        // To Do: set contraints for the img view
+        // Set translate autoresizingmask to false
+        self.cardImageView.setTranslatesAutoresizingMaskIntoConstraints(false)
+        
+        // Add img view to view
+        self.addSubview(self.cardImageView)
+        
+        // Set contraints for the img view
+        var heightConstraint:NSLayoutConstraint = NSLayoutConstraint(item: self.cardImageView, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: nil, attribute: NSLayoutAttribute.NotAnAttribute, multiplier: 1, constant: 170)
+        
+        var widthConstraint:NSLayoutConstraint = NSLayoutConstraint(item: self.cardImageView, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: nil, attribute: NSLayoutAttribute.NotAnAttribute, multiplier: 1, constant: 120)
+        
+        self.cardImageView.addConstraints([heightConstraint, widthConstraint])
+        
+        //set position of image view
+        var verticalConstraint:NSLayoutConstraint = NSLayoutConstraint(item: self.cardImageView, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: self, attribute: NSLayoutAttribute.Top, multiplier: 1, constant: 0)
+        var horizontalConstraint:NSLayoutConstraint = NSLayoutConstraint(item: self.cardImageView, attribute: NSLayoutAttribute.Left, relatedBy: NSLayoutRelation.Equal, toItem: self, attribute: NSLayoutAttribute.Left, multiplier: 1, constant: 0)
+        
+        self.addConstraints([verticalConstraint, horizontalConstraint])
     }
 
     required init(coder aDecoder: NSCoder) {

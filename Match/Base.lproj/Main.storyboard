@@ -22,15 +22,17 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="alw-Q8-tTs" userLabel="ContentView">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <variation key="heightClass=compact" ambiguous="YES" misplaced="YES">
-                                            <rect key="frame" x="0.0" y="-53" width="0.0" height="67"/>
+                                        <variation key="heightClass=compact" ambiguous="YES">
+                                            <rect key="frame" x="0.0" y="0.0" width="0.0" height="0.0"/>
                                         </variation>
                                     </view>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="alw-Q8-tTs" firstAttribute="leading" secondItem="YI3-Vo-xLk" secondAttribute="leading" id="UCc-kQ-9ha"/>
+                                    <constraint firstItem="alw-Q8-tTs" firstAttribute="leading" secondItem="YI3-Vo-xLk" secondAttribute="leading" id="3fT-kn-Nfc"/>
+                                    <constraint firstAttribute="bottom" secondItem="alw-Q8-tTs" secondAttribute="bottom" id="E6g-8T-90A"/>
+                                    <constraint firstItem="alw-Q8-tTs" firstAttribute="top" secondItem="YI3-Vo-xLk" secondAttribute="top" id="JoU-F9-Qwf"/>
                                     <constraint firstAttribute="width" constant="510" id="Xo9-li-TBk"/>
-                                    <constraint firstAttribute="trailing" secondItem="alw-Q8-tTs" secondAttribute="trailing" id="hmL-8P-12R"/>
+                                    <constraint firstAttribute="trailing" secondItem="alw-Q8-tTs" secondAttribute="trailing" id="cTm-ak-SMJ"/>
                                 </constraints>
                                 <variation key="default">
                                     <mask key="subviews">
@@ -38,8 +40,10 @@
                                     </mask>
                                     <mask key="constraints">
                                         <exclude reference="Xo9-li-TBk"/>
-                                        <exclude reference="UCc-kQ-9ha"/>
-                                        <exclude reference="hmL-8P-12R"/>
+                                        <exclude reference="3fT-kn-Nfc"/>
+                                        <exclude reference="E6g-8T-90A"/>
+                                        <exclude reference="JoU-F9-Qwf"/>
+                                        <exclude reference="cTm-ak-SMJ"/>
                                     </mask>
                                 </variation>
                                 <variation key="heightClass=compact" ambiguous="YES">
@@ -49,8 +53,10 @@
                                     </mask>
                                     <mask key="constraints">
                                         <include reference="Xo9-li-TBk"/>
-                                        <include reference="UCc-kQ-9ha"/>
-                                        <include reference="hmL-8P-12R"/>
+                                        <include reference="3fT-kn-Nfc"/>
+                                        <include reference="E6g-8T-90A"/>
+                                        <include reference="JoU-F9-Qwf"/>
+                                        <include reference="cTm-ak-SMJ"/>
                                     </mask>
                                 </variation>
                             </scrollView>

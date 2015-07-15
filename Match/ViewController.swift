@@ -105,7 +105,10 @@ class ViewController: UIViewController {
         
         // Add height constraint to content view so that the scrollview knows how much to allow to scroll
         var contentViewHeightConstraint:NSLayoutConstraint = NSLayoutConstraint(item: self.contentView, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: self.cards[0], attribute: NSLayoutAttribute.Height, multiplier: 4, constant: 15)
+        
+        // Add constraint
+        self.contentView.addConstraints([contentViewHeightConstraint])
 
     } // end layout func
-}
+} 
 
