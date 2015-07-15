@@ -54,5 +54,10 @@ class Card: UIView {
         // call UI views with fram method and pass in the frame
         super.init(frame: frame)
     }
+    
+    func flipUp() {
+        // Set imgview to image that represents the card value
+        self.cardImageView.image = UIImage(named: self.cardNames[self.cardValue])
+    }
 
 }

@@ -43,9 +43,11 @@ class ViewController: UIViewController {
         
             // Place the card in the view and turn off translateautoresizingmask
             var thisCard:Card = self.cards[index]
-        
             thisCard.setTranslatesAutoresizingMaskIntoConstraints(false)
             self.contentView.addSubview(thisCard)
+            
+            var tapGestureRecognizer:UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: Selector("cardTapped:"))
+            thisCard.addGestureRecognizer(tapGestureRecognizer)
         
         
             // Set the height and width constraints
@@ -85,7 +87,7 @@ class ViewController: UIViewController {
             }
             else {
                 // Card is in the first row
-                var topMarginConstraint:NSLayoutConstraint = NSLayoutConstraint(item: thisCard, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: self.contentView, attribute: NSLayoutAttribute.Top, multiplier: 1, constant: 0)
+                var topMarginConstraint:NSLayoutConstraint = NSLayoutConstraint(item: thisCard, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: self.contentView, attribute: NSLayoutAttribute.Top, multiplier: 1, constant: 10)
                 
                 // Add constraint
                 self.contentView.addConstraints([topMarginConstraint])
@@ -104,11 +106,23 @@ class ViewController: UIViewController {
         } // end for loop
         
         // Add height constraint to content view so that the scrollview knows how much to allow to scroll
-        var contentViewHeightConstraint:NSLayoutConstraint = NSLayoutConstraint(item: self.contentView, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: self.cards[0], attribute: NSLayoutAttribute.Height, multiplier: 4, constant: 15)
+        var contentViewHeightConstraint:NSLayoutConstraint = NSLayoutConstraint(item: self.contentView, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: self.cards[0], attribute: NSLayoutAttribute.Height, multiplier: 4, constant: 35)
         
         // Add constraint
         self.contentView.addConstraints([contentViewHeightConstraint])
 
     } // end layout func
+    
+    func cardTapped(recognizer:UITapGestureRecognizer) {
+        
+        // Get the card that was tapped
+        var cardThatWasTapped:Card = recognizer.view as Card
+        
+        // Call the flip up method
+        cardThatWasTapped.flipUp()
+        
+        
+        
+    }
 } 
 
