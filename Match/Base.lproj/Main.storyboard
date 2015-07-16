@@ -82,13 +82,13 @@
                                 <exclude reference="YI3-Vo-xLk"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="tJ8-ff-EAs"/>
-                                <exclude reference="z17-ii-XIL"/>
+                                <exclude reference="lpt-Kc-lRS"/>
                                 <exclude reference="G9S-Yg-jZ0"/>
                                 <exclude reference="Sw5-8Y-Ncy"/>
                                 <exclude reference="ftb-xQ-uMp"/>
                                 <exclude reference="qal-Ik-JKb"/>
-                                <exclude reference="lpt-Kc-lRS"/>
+                                <exclude reference="tJ8-ff-EAs"/>
+                                <exclude reference="z17-ii-XIL"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=compact">
@@ -97,13 +97,13 @@
                                 <include reference="YI3-Vo-xLk"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="tJ8-ff-EAs"/>
-                                <include reference="z17-ii-XIL"/>
+                                <include reference="lpt-Kc-lRS"/>
                                 <include reference="G9S-Yg-jZ0"/>
                                 <include reference="Sw5-8Y-Ncy"/>
                                 <include reference="ftb-xQ-uMp"/>
                                 <include reference="qal-Ik-JKb"/>
-                                <include reference="lpt-Kc-lRS"/>
+                                <include reference="tJ8-ff-EAs"/>
+                                <include reference="z17-ii-XIL"/>
                             </mask>
                         </variation>
                     </view>

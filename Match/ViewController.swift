@@ -15,6 +15,8 @@ class ViewController: UIViewController {
     
     var gameModel:GameModel = GameModel()
     var cards:[Card] = [Card]()
+    var revealedCard:Card?
+   
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -117,6 +119,44 @@ class ViewController: UIViewController {
         
         // Get the card that was tapped
         var cardThatWasTapped:Card = recognizer.view as Card
+        
+        // Is the card already flipped up?
+        if (cardThatWasTapped.isFlipped == false) {
+            
+            // Card is not flipped up, check if its the first card flipped
+            if (self.revealedCard == nil) {
+                
+                // This is the first card being flipped
+                // To Do: flip down all of the cards
+                
+                // Flip up the card
+                cardThatWasTapped.flipUp()
+                
+                // Set the revealed card 
+                self.revealedCard = cardThatWasTapped
+            }
+            else {
+                // This is the second card being flipped
+                
+                // Flip up the card
+                cardThatWasTapped.flipUp()
+                
+                // Check if card a match
+                if (revealedCard?.cardValue == cardThatWasTapped.cardValue) {
+                    
+                    // It's a match
+                    
+                    //To do: remove both cards
+                }
+                else{
+                    // It's not a match
+                    
+                    // Reset the revealed card
+                    self.revealedCard = nil
+                }
+            }
+            
+        }
         
         // Call the flip up method
         cardThatWasTapped.flipUp()
