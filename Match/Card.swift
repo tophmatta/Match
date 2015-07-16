@@ -14,6 +14,15 @@ class Card: UIView {
     var cardValue:Int = 0
     var cardNames:[String] = ["ace", "card2", "card3", "card4", "card5", "card6", "card7", "card8", "card9", "card10", "jack", "queen", "king"]
     var isFlipped:Bool = false
+    var isDone:Bool = false {
+        
+        didSet {
+          // If the card is done, remove the image
+            if (isDone == true){
+                self.cardImageView.image = nil
+            }
+        }
+    }
     
     override init() {
         super.init()

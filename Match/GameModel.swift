@@ -14,33 +14,33 @@ class GameModel: NSObject {
         
         var generatedCards:[Card] = [Card]()
         
-        // to do: generate card obj
+        // Generate card obj
         for index in 0...7 {
             
-            // generating random number
+            // Generating random number
             var randNumber:Int = Int(arc4random_uniform(13))
             
-            // generating a new card object
+            // Generating a new card object
             var firstCard:Card = Card()
             firstCard.cardValue = randNumber
             
-            // create second card object
+            // Create second card object
             var secondCard:Card = Card()
             secondCard.cardValue = randNumber
             
-            // place card objects into the array
+            // Place card objects into the array
             generatedCards += [firstCard, secondCard]
         }
-        // randomize the cards
+        // Randomize the cards
         for index in 0...generatedCards.count-1 {
             
-            // current card
+            // Current card
             var currentCard:Card = generatedCards[index]
             
-            // randomly choose another index
+            // Randomly choose another index
             var randomIndex:Int = Int(arc4random_uniform(16))
             
-            // swap objects at the two indexes
+            // Swap objects at the two indexes
             generatedCards[index] = generatedCards[randomIndex]
             generatedCards[randomIndex] = currentCard
             

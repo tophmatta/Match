@@ -127,7 +127,8 @@ class ViewController: UIViewController {
             if (self.revealedCard == nil) {
                 
                 // This is the first card being flipped
-                // To Do: flip down all of the cards
+                // Flip down all of the cards
+                self.flipDownAllCards()
                 
                 // Flip up the card
                 cardThatWasTapped.flipUp()
@@ -146,7 +147,12 @@ class ViewController: UIViewController {
                     
                     // It's a match
                     
-                    //To do: remove both cards
+                    // Remove both cards
+                    self.revealedCard?.isDone = true
+                    cardThatWasTapped.isDone = true
+                    
+                    // Reset revealed card
+                    self.revealedCard = nil
                 }
                 else{
                     // It's not a match
@@ -158,11 +164,17 @@ class ViewController: UIViewController {
             
         }
         
-        // Call the flip up method
-        cardThatWasTapped.flipUp()
+    } // end func cardTapped
+    
+    func flipDownAllCards() {
         
-        
-        
+        for card in self.cards {
+            
+            if (card.isDone == false){
+                
+                card.flippedDown()
+            }
+        }
     }
 } 
 
