@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6D04957A1B589E3900212F6F /* cardflip.wav in Resources */ = {isa = PBXBuildFile; fileRef = 6D0495761B589E3900212F6F /* cardflip.wav */; };
+		6D04957B1B589E3900212F6F /* dingcorrect.wav in Resources */ = {isa = PBXBuildFile; fileRef = 6D0495771B589E3900212F6F /* dingcorrect.wav */; };
+		6D04957C1B589E3900212F6F /* dingwrong.wav in Resources */ = {isa = PBXBuildFile; fileRef = 6D0495781B589E3900212F6F /* dingwrong.wav */; };
+		6D04957D1B589E3900212F6F /* shuffle.wav in Resources */ = {isa = PBXBuildFile; fileRef = 6D0495791B589E3900212F6F /* shuffle.wav */; };
+		6D04957F1B589E6C00212F6F /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D04957E1B589E6C00212F6F /* AVFoundation.framework */; };
 		6DEE6AAE1B52B6EB009E547B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DEE6AAD1B52B6EB009E547B /* AppDelegate.swift */; };
 		6DEE6AB01B52B6EB009E547B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DEE6AAF1B52B6EB009E547B /* ViewController.swift */; };
 		6DEE6AB31B52B6EB009E547B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6DEE6AB11B52B6EB009E547B /* Main.storyboard */; };
@@ -28,6 +33,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6D0495761B589E3900212F6F /* cardflip.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = cardflip.wav; sourceTree = "<group>"; };
+		6D0495771B589E3900212F6F /* dingcorrect.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = dingcorrect.wav; sourceTree = "<group>"; };
+		6D0495781B589E3900212F6F /* dingwrong.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = dingwrong.wav; sourceTree = "<group>"; };
+		6D0495791B589E3900212F6F /* shuffle.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = shuffle.wav; sourceTree = "<group>"; };
+		6D04957E1B589E6C00212F6F /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		6DEE6AA81B52B6EB009E547B /* Match.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Match.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6DEE6AAC1B52B6EB009E547B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6DEE6AAD1B52B6EB009E547B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -47,6 +57,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6D04957F1B589E6C00212F6F /* AVFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,6 +74,7 @@
 		6DEE6A9F1B52B6EA009E547B = {
 			isa = PBXGroup;
 			children = (
+				6D04957E1B589E6C00212F6F /* AVFoundation.framework */,
 				6DEE6AAA1B52B6EB009E547B /* Match */,
 				6DEE6AC01B52B6EB009E547B /* MatchTests */,
 				6DEE6AA91B52B6EB009E547B /* Products */,
@@ -96,6 +108,10 @@
 		6DEE6AAB1B52B6EB009E547B /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				6D0495761B589E3900212F6F /* cardflip.wav */,
+				6D0495771B589E3900212F6F /* dingcorrect.wav */,
+				6D0495781B589E3900212F6F /* dingwrong.wav */,
+				6D0495791B589E3900212F6F /* shuffle.wav */,
 				6DEE6AAC1B52B6EB009E547B /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -199,6 +215,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				6DEE6AB31B52B6EB009E547B /* Main.storyboard in Resources */,
+				6D04957B1B589E3900212F6F /* dingcorrect.wav in Resources */,
+				6D04957C1B589E3900212F6F /* dingwrong.wav in Resources */,
+				6D04957D1B589E3900212F6F /* shuffle.wav in Resources */,
+				6D04957A1B589E3900212F6F /* cardflip.wav in Resources */,
 				6DEE6AB81B52B6EB009E547B /* LaunchScreen.xib in Resources */,
 				6DEE6AB51B52B6EB009E547B /* Images.xcassets in Resources */,
 			);
@@ -413,6 +433,7 @@
 				6DEE6AC91B52B6EB009E547B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		6DEE6ACA1B52B6EB009E547B /* Build configuration list for PBXNativeTarget "MatchTests" */ = {
 			isa = XCConfigurationList;
@@ -421,6 +442,7 @@
 				6DEE6ACC1B52B6EB009E547B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

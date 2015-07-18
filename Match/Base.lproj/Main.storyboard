@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -65,12 +66,20 @@
                                     </mask>
                                 </variation>
                             </scrollView>
+                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.39999999999999963" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bW3-nJ-BGn">
+                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="80"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="bW3-nJ-BGn" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="5" id="5hV-Zl-E7n"/>
                             <constraint firstAttribute="bottom" secondItem="Llg-Yl-EWL" secondAttribute="bottom" id="G9S-Yg-jZ0"/>
                             <constraint firstItem="Llg-Yl-EWL" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="Sw5-8Y-Ncy"/>
                             <constraint firstAttribute="trailing" secondItem="Llg-Yl-EWL" secondAttribute="trailing" id="ftb-xQ-uMp"/>
+                            <constraint firstItem="bW3-nJ-BGn" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="5" id="jMX-ZP-V6W"/>
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="YI3-Vo-xLk" secondAttribute="bottom" id="lpt-Kc-lRS"/>
                             <constraint firstItem="Llg-Yl-EWL" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" id="qal-Ik-JKb"/>
                             <constraint firstItem="YI3-Vo-xLk" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" id="tJ8-ff-EAs"/>
@@ -80,36 +89,43 @@
                             <mask key="subviews">
                                 <exclude reference="Llg-Yl-EWL"/>
                                 <exclude reference="YI3-Vo-xLk"/>
+                                <exclude reference="bW3-nJ-BGn"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="lpt-Kc-lRS"/>
                                 <exclude reference="G9S-Yg-jZ0"/>
                                 <exclude reference="Sw5-8Y-Ncy"/>
                                 <exclude reference="ftb-xQ-uMp"/>
                                 <exclude reference="qal-Ik-JKb"/>
+                                <exclude reference="5hV-Zl-E7n"/>
+                                <exclude reference="jMX-ZP-V6W"/>
                                 <exclude reference="tJ8-ff-EAs"/>
                                 <exclude reference="z17-ii-XIL"/>
+                                <exclude reference="lpt-Kc-lRS"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=compact">
                             <mask key="subviews">
                                 <include reference="Llg-Yl-EWL"/>
                                 <include reference="YI3-Vo-xLk"/>
+                                <include reference="bW3-nJ-BGn"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="lpt-Kc-lRS"/>
                                 <include reference="G9S-Yg-jZ0"/>
                                 <include reference="Sw5-8Y-Ncy"/>
                                 <include reference="ftb-xQ-uMp"/>
                                 <include reference="qal-Ik-JKb"/>
+                                <include reference="5hV-Zl-E7n"/>
+                                <include reference="jMX-ZP-V6W"/>
                                 <include reference="tJ8-ff-EAs"/>
                                 <include reference="z17-ii-XIL"/>
+                                <include reference="lpt-Kc-lRS"/>
                             </mask>
                         </variation>
                     </view>
                     <connections>
                         <outlet property="cardScrollView" destination="YI3-Vo-xLk" id="jNq-9e-EDh"/>
                         <outlet property="contentView" destination="alw-Q8-tTs" id="K45-nq-vuK"/>
+                        <outlet property="countdownLabel" destination="bW3-nJ-BGn" id="dCB-BE-0FL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>

@@ -10,7 +10,8 @@ import UIKit
 
 class Card: UIView {
     
-    var cardImageView:UIImageView = UIImageView()
+    var frontImageView:UIImageView = UIImageView()
+    var backImageView:UIImageView = UIImageView()
     var cardValue:Int = 0
     var cardNames:[String] = ["ace", "card2", "card3", "card4", "card5", "card6", "card7", "card8", "card9", "card10", "jack", "queen", "king"]
     var isFlipped:Bool = false
@@ -19,35 +20,16 @@ class Card: UIView {
         didSet {
           // If the card is done, remove the image
             if (isDone == true){
-                self.cardImageView.image = nil
+                
+                UIView.animateWithDuration(1, delay: 1, options: UIViewAnimationOptions.CurveEaseOut, animations: {
+                    
+                    self.frontImageView.alpha = 0
+                    self.backImageView.alpha = 0
+                    
+                    }, completion: nil)
+                
             }
         }
-    }
-    
-    override init() {
-        super.init()
-        
-        // Set default img for img view
-        self.cardImageView.image = UIImage(named: "back")
-        
-        // Set translate autoresizingmask to false
-        self.cardImageView.setTranslatesAutoresizingMaskIntoConstraints(false)
-        
-        // Add img view to view
-        self.addSubview(self.cardImageView)
-        
-        // Set contraints for the img view
-        var heightConstraint:NSLayoutConstraint = NSLayoutConstraint(item: self.cardImageView, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: nil, attribute: NSLayoutAttribute.NotAnAttribute, multiplier: 1, constant: 170)
-        
-        var widthConstraint:NSLayoutConstraint = NSLayoutConstraint(item: self.cardImageView, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: nil, attribute: NSLayoutAttribute.NotAnAttribute, multiplier: 1, constant: 120)
-        
-        self.cardImageView.addConstraints([heightConstraint, widthConstraint])
-        
-        //set position of image view
-        var verticalConstraint:NSLayoutConstraint = NSLayoutConstraint(item: self.cardImageView, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: self, attribute: NSLayoutAttribute.Top, multiplier: 1, constant: 0)
-        var horizontalConstraint:NSLayoutConstraint = NSLayoutConstraint(item: self.cardImageView, attribute: NSLayoutAttribute.Left, relatedBy: NSLayoutRelation.Equal, toItem: self, attribute: NSLayoutAttribute.Left, multiplier: 1, constant: 0)
-        
-        self.addConstraints([verticalConstraint, horizontalConstraint])
     }
 
     required init(coder aDecoder: NSCoder) {
@@ -63,18 +45,68 @@ class Card: UIView {
     override init(frame: CGRect) {
         // call UI views with fram method and pass in the frame
         super.init(frame: frame)
+        
+        // Set default img for img view
+        self.backImageView.image = UIImage(named: "back")
+        self.applySizeConstraintsToImage(backImageView)
+        self.applyPositioningConstraintsToImage(backImageView)
+        
+        // Set autolayout constraints for the fron
+        self.applySizeConstraintsToImage(self.frontImageView)
+        self.applyPositioningConstraintsToImage(self.frontImageView)
+        
+        
+
+    }
+    
+    func applySizeConstraintsToImage(imageView:UIImageView) {
+        
+        // Set translate autoresizingmask to false
+        imageView.setTranslatesAutoresizingMaskIntoConstraints(false)
+        
+        // Add img view to view
+        self.addSubview(imageView)
+        
+        // Set contraints for the img view
+        var heightConstraint:NSLayoutConstraint = NSLayoutConstraint(item: imageView, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: nil, attribute: NSLayoutAttribute.NotAnAttribute, multiplier: 1, constant: 170)
+        
+        var widthConstraint:NSLayoutConstraint = NSLayoutConstraint(item: imageView, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: nil, attribute: NSLayoutAttribute.NotAnAttribute, multiplier: 1, constant: 120)
+        
+        imageView.addConstraints([heightConstraint, widthConstraint])
+        
+        
+    }
+    
+    func applyPositioningConstraintsToImage(imageView:UIImageView) {
+        
+        //set position of image view
+        var verticalConstraint:NSLayoutConstraint = NSLayoutConstraint(item: imageView, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: self, attribute: NSLayoutAttribute.Top, multiplier: 1, constant: 0)
+        var horizontalConstraint:NSLayoutConstraint = NSLayoutConstraint(item: imageView, attribute: NSLayoutAttribute.Left, relatedBy: NSLayoutRelation.Equal, toItem: self, attribute: NSLayoutAttribute.Left, multiplier: 1, constant: 0)
+        
+        self.addConstraints([verticalConstraint, horizontalConstraint])
+        
     }
     
     func flipUp() {
         // Set imgview to image that represents the card value
-        self.cardImageView.image = UIImage(named: self.cardNames[self.cardValue])
+        self.frontImageView.image = UIImage(named: self.cardNames[self.cardValue])
+        
+        // Do animation
+        UIView.transitionFromView(self.backImageView, toView: self.frontImageView, duration: 1, options: UIViewAnimationOptions.TransitionFlipFromLeft, completion: nil)
+        
+        // Add positioning constraints
+        self.applyPositioningConstraintsToImage(self.frontImageView)
         
         self.isFlipped = true
     }
 
     func flippedDown() {
         // Set the imageview to the card back
-        self.cardImageView.image = UIImage(named: "back")
+        UIView.transitionFromView(self.frontImageView, toView: self.backImageView, duration: 1
+        , options: UIViewAnimationOptions.TransitionFlipFromRight, completion: nil)
+        
+        // Add positioning constraints
+        self.applyPositioningConstraintsToImage(self.backImageView)
         
         self.isFlipped = false
     }

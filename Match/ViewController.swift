@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 class ViewController: UIViewController {
 
@@ -16,11 +17,42 @@ class ViewController: UIViewController {
     var gameModel:GameModel = GameModel()
     var cards:[Card] = [Card]()
     var revealedCard:Card?
-   
+    
+    // Timer properties
+    var timer:NSTimer!
+    var countdown:Int = 20
+   @IBOutlet weak var countdownLabel: UILabel!
+    
+    // Audio player properties
+    var correctSoundPlayer:AVAudioPlayer?
+    var wrongSoundPlayer:AVAudioPlayer?
+    var shuffleSoundPlayer:AVAudioPlayer?
+    var flipSoundPlayer:AVAudioPlayer?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        // Initialize the audio player
+        var correctSoundUrl:NSURL? = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("dingcorrect", ofType: "wav")!)
+        if (correctSoundUrl) != nil {
+            self.correctSoundPlayer = AVAudioPlayer(contentsOfURL: correctSoundUrl!, error: nil)
+        }
+        
+        var wrongSoundUrl:NSURL? = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("dingwrong", ofType: "wav")!)
+        if (wrongSoundUrl != nil) {
+            self.wrongSoundPlayer = AVAudioPlayer(contentsOfURL: wrongSoundUrl!, error: nil)
+        }
+        
+        var shuffleSoundUrl:NSURL? = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("shuffle", ofType: "wav")!)
+        if (shuffleSoundUrl != nil) {
+            self.shuffleSoundPlayer = AVAudioPlayer(contentsOfURL: shuffleSoundUrl!, error: nil)
+        }
+        
+        var flipSoundUrl:NSURL? = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("cardflip", ofType: "wav")!)
+        if (flipSoundUrl != nil) {
+            self.flipSoundPlayer = AVAudioPlayer(contentsOfURL: flipSoundUrl!, error: nil)
+        }
         
         // Get card from game model
         self.cards = self.gameModel.getCards()
@@ -28,11 +60,62 @@ class ViewController: UIViewController {
         // Layout cards
         self.layoutCards()
         
+        // Play the shuffle sound
+        if  (self.shuffleSoundPlayer != nil){
+            self.shuffleSoundPlayer?.play()
+        }
+        
+        // Start the timer
+        
+        self.timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: Selector("timerUpdate"), userInfo: nil, repeats: true)
+    
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func timerUpdate () {
+        
+        // Decrement the counter
+        countdown--
+        
+        // Update countdown label
+        self.countdownLabel.text = String(countdown)
+        
+        if (countdown == 0){
+            
+            // Stop the timer
+            self.timer.invalidate()
+            
+            // Game is over, check if there is at least one unmatched card
+            var allCardsMatched:Bool = true
+            
+            for card in self.cards {
+                
+                if (card.isDone == false){
+                    allCardsMatched = false
+                    break;
+                }
+            }
+            var alertText:String = ""
+            if (allCardsMatched == true){
+                
+                // Win
+                alertText = "You Win!"
+            }
+            else{
+                
+                //Lose
+                alertText = "You Lose!"
+            }
+            
+            var alert:UIAlertController = UIAlertController(title: "Time's Up", message: alertText, preferredStyle: UIAlertControllerStyle.Alert)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Cancel, handler: nil))
+            self.presentViewController(alert, animated: true, completion: nil)
+        }
+        
     }
 
     func layoutCards() {
@@ -117,18 +200,27 @@ class ViewController: UIViewController {
     
     func cardTapped(recognizer:UITapGestureRecognizer) {
         
+        // If countdown is 0, then exit
+        if (self.countdown == 0 ) {
+            return
+        }
+        
         // Get the card that was tapped
-        var cardThatWasTapped:Card = recognizer.view as Card
+        var cardThatWasTapped:Card = recognizer.view as! Card
         
         // Is the card already flipped up?
         if (cardThatWasTapped.isFlipped == false) {
+            
+            if (flipSoundPlayer != nil) {
+                self.flipSoundPlayer?.play()
+            }
             
             // Card is not flipped up, check if its the first card flipped
             if (self.revealedCard == nil) {
                 
                 // This is the first card being flipped
                 // Flip down all of the cards
-                self.flipDownAllCards()
+                //self.flipDownAllCards()
                 
                 // Flip up the card
                 cardThatWasTapped.flipUp()
@@ -147,6 +239,11 @@ class ViewController: UIViewController {
                     
                     // It's a match
                     
+                    // Play correct sound
+                    if (self.correctSoundPlayer != nil) {
+                        self.correctSoundPlayer?.play()
+                    }
+                    
                     // Remove both cards
                     self.revealedCard?.isDone = true
                     cardThatWasTapped.isDone = true
@@ -156,6 +253,18 @@ class ViewController: UIViewController {
                 }
                 else{
                     // It's not a match
+                    
+                    // Play wrong sound
+                    if (wrongSoundPlayer != nil) {
+                        self.wrongSoundPlayer?.play()
+                    }
+                    
+                    // Flip down both cards
+                    
+                    var timer1 = NSTimer.scheduledTimerWithTimeInterval(1, target: self.revealedCard!, selector: Selector("flippedDown"), userInfo: nil, repeats: false)
+                    
+                    var timer2 = NSTimer.scheduledTimerWithTimeInterval(1, target: cardThatWasTapped, selector: Selector("flippedDown"), userInfo: nil, repeats: false)
+                    
                     
                     // Reset the revealed card
                     self.revealedCard = nil
