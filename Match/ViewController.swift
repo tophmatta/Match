@@ -20,7 +20,7 @@ class ViewController: UIViewController {
     
     // Timer properties
     var timer:NSTimer!
-    var countdown:Int = 20
+    var countdown:Int = 30
    @IBOutlet weak var countdownLabel: UILabel!
     
     // Audio player properties

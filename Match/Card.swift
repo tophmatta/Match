@@ -13,7 +13,7 @@ class Card: UIView {
     var frontImageView:UIImageView = UIImageView()
     var backImageView:UIImageView = UIImageView()
     var cardValue:Int = 0
-    var cardNames:[String] = ["ace", "card2", "card3", "card4", "card5", "card6", "card7", "card8", "card9", "card10", "jack", "queen", "king"]
+    var cardNames:[String] = ["card1", "card2", "card3", "card4", "card5", "card6", "card7", "card8", "card9", "card10", "card11", "card12", "card13"]
     var isFlipped:Bool = false
     var isDone:Bool = false {
         
@@ -92,7 +92,7 @@ class Card: UIView {
         self.frontImageView.image = UIImage(named: self.cardNames[self.cardValue])
         
         // Do animation
-        UIView.transitionFromView(self.backImageView, toView: self.frontImageView, duration: 1, options: UIViewAnimationOptions.TransitionFlipFromLeft, completion: nil)
+        UIView.transitionFromView(self.backImageView, toView: self.frontImageView, duration: 1/2, options: UIViewAnimationOptions.TransitionFlipFromLeft, completion: nil)
         
         // Add positioning constraints
         self.applyPositioningConstraintsToImage(self.frontImageView)
@@ -102,7 +102,7 @@ class Card: UIView {
 
     func flippedDown() {
         // Set the imageview to the card back
-        UIView.transitionFromView(self.frontImageView, toView: self.backImageView, duration: 1
+        UIView.transitionFromView(self.frontImageView, toView: self.backImageView, duration: 1/2
         , options: UIViewAnimationOptions.TransitionFlipFromRight, completion: nil)
         
         // Add positioning constraints

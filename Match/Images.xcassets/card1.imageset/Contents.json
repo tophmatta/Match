@@ -3,17 +3,17 @@
     {
       "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "king.png"
+      "filename" : "card1.png"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "king@2x.png"
+      "filename" : "card1@2x.png"
     },
     {
       "idiom" : "universal",
       "scale" : "3x",
-      "filename" : "king@3x.png"
+      "filename" : "card1@3x.png"
     }
   ],
   "info" : {
