@@ -54,8 +54,6 @@ class Card: UIView {
         // Set autolayout constraints for the fron
         self.applySizeConstraintsToImage(self.frontImageView)
         self.applyPositioningConstraintsToImage(self.frontImageView)
-        
-        
 
     }
     

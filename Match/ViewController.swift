@@ -13,6 +13,7 @@ class ViewController: UIViewController {
 
     @IBOutlet weak var cardScrollView: UIScrollView!
     @IBOutlet weak var contentView: UIView!
+    @IBOutlet weak var resultView: UIView!
     
     var gameModel:GameModel = GameModel()
     var cards:[Card] = [Card]()
@@ -29,9 +30,21 @@ class ViewController: UIViewController {
     var shuffleSoundPlayer:AVAudioPlayer?
     var flipSoundPlayer:AVAudioPlayer?
     
+    // Result label properties
+    @IBOutlet weak var correctNumberLabel: UILabel!
+    @IBOutlet weak var incorrectNumberLabel: UILabel!
+    
+    // Card Matched/Unmatched counters
+    var cardMatchedCorrectCount:Int = 0
+    var cardMatchedIncorrectCount:Int = 0
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        // Set result view alpha to zero
+        self.resultView.alpha = 0
         
         // Initialize the audio player
         var correctSoundUrl:NSURL? = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("dingcorrect", ofType: "wav")!)
@@ -99,21 +112,15 @@ class ViewController: UIViewController {
                     break;
                 }
             }
-            var alertText:String = ""
-            if (allCardsMatched == true){
-                
-                // Win
-                alertText = "You Win!"
-            }
-            else{
-                
-                //Lose
-                alertText = "You Lose!"
-            }
             
-            var alert:UIAlertController = UIAlertController(title: "Time's Up", message: alertText, preferredStyle: UIAlertControllerStyle.Alert)
-            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Cancel, handler: nil))
-            self.presentViewController(alert, animated: true, completion: nil)
+            // Display result view
+            UIView.animateWithDuration(0.5, animations: {
+                
+                // Fade results into view
+                self.resultView.alpha = 1
+                
+                }, completion: nil)
+            
         }
         
     }
@@ -200,6 +207,7 @@ class ViewController: UIViewController {
     
     func cardTapped(recognizer:UITapGestureRecognizer) {
         
+        
         // If countdown is 0, then exit
         if (self.countdown == 0 ) {
             return
@@ -248,6 +256,13 @@ class ViewController: UIViewController {
                     self.revealedCard?.isDone = true
                     cardThatWasTapped.isDone = true
                     
+                    // +1 the count of the correct matched result
+                    cardMatchedCorrectCount += 1
+                    
+                    // Set correct matched result to label
+                    self.correctNumberLabel.text = String(cardMatchedCorrectCount)
+                    println(String(cardMatchedCorrectCount) + " correct match")
+                    
                     // Reset revealed card
                     self.revealedCard = nil
                 }
@@ -265,6 +280,12 @@ class ViewController: UIViewController {
                     
                     var timer2 = NSTimer.scheduledTimerWithTimeInterval(1, target: cardThatWasTapped, selector: Selector("flippedDown"), userInfo: nil, repeats: false)
                     
+                    // +1 the count of incorrectly matched result
+                    cardMatchedIncorrectCount += 1
+                    
+                    // Set incorrect matched result to label
+                    self.incorrectNumberLabel.text = String(cardMatchedIncorrectCount)
+                    println(String(cardMatchedIncorrectCount) + " incorrect match")
                     
                     // Reset the revealed card
                     self.revealedCard = nil
@@ -274,6 +295,7 @@ class ViewController: UIViewController {
         }
         
     } // end func cardTapped
+    
     
     func flipDownAllCards() {
         
